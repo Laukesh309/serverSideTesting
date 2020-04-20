@@ -1,3 +1,4 @@
+
 const path = require('path')
 
 
@@ -7,7 +8,7 @@ module.exports={
     entry:"./src/index.js",
     output:{
         filename :"bundle.js",
-        path :path(__dirname,'build')
+        path :path.resolve(__dirname,'build')
     },
     // Tell webpack to run babel on every file it run through
     module:{
@@ -16,7 +17,7 @@ module.exports={
                 test:/\.js?$/,
                 loader:'babel-loader',
                 exclude:/node_modules/,
-                option:{
+                options:{
                     presets:[
                         'react',
                         'stage-0',
