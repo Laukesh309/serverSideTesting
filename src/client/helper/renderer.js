@@ -1,9 +1,12 @@
 import React from 'react'
-
+import {StaticRouter} from "react-router-dom"
 import {renderToString} from "react-dom/server"
-import Home from "../component/Home"
-const renderer =()=>{
-    const content = renderToString(<Home/>)
+import Route from "../Route"
+const renderer =(req)=>{
+    const content = renderToString(
+        <StaticRouter location ={req.path} context={{}}>
+          <Route/>
+        </StaticRouter>)
     return `<html>
                <head></head>
                <body>
