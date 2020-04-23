@@ -4,7 +4,7 @@ const Home =()=>{
     return(
         <div>
         <h1>
-            This is ServerSideRendering
+            This is ServerSideRendering this is second component
             </h1>
             <button onClick={()=>{
                 console.log("this is onclick function")
