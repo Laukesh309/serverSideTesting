@@ -1,30 +1,34 @@
 
 const path = require('path')
+const merge = require('webpack-merge')
+const baseConfig = require('./webpack.base')
+const webpackNodeExternal= require("webpack-node-externals")
 
-
-
-module.exports={
+const config={
     target:'node',
     entry:"./src/index.js",
     output:{
         filename :"bundle.js",
         path :path.resolve(__dirname,'build')
     },
+    externals:[webpackNodeExternal()]
     // Tell webpack to run babel on every file it run through
-    module:{
-        rules:[
-            {
-                test:/\.js?$/,
-                loader:'babel-loader',
-                exclude:/node_modules/,
-                options:{
-                    presets:[
-                        'react',
-                        'stage-0',
-                        ['env', { targets: {browser:['last 2 versions'] } }]
-                    ]
-                }
-            }
-        ]
-    }
+//    module:{
+//         rules:[
+//             {
+//                 test:/\.js?$/,
+//                 loader:'babel-loader',
+//                 exclude:/node_modules/,
+//                 options:{
+//                     presets:[
+//                         'react',
+//                         'stage-0',
+//                         ['env', { targets: {browser:['last 2 versions'] } }]
+//                     ]
+//                 }
+//             }
+//         ] 
+//     }
 }
+
+module.exports = merge(baseConfig,config)
