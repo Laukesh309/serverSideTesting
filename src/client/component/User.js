@@ -23,9 +23,13 @@ class userList extends Component{
     }
 }
 function mapStateToProps(state){
+    console.log("this is serverside rendering",state)
     return {
         users:state.users
     }
 }
-
+function loadData(store){
+   return store.dispatch(fetchUser())
+}
+export {loadData}
 export default connect(mapStateToProps,{fetchUser})(userList)
