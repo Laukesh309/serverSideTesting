@@ -93,7 +93,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchUser = exports.FETCH_USERS = undefined;
 
-var _axios = __webpack_require__(12);
+var _axios = __webpack_require__(13);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -152,23 +152,23 @@ module.exports = require("redux");
 "use strict";
 
 
-__webpack_require__(16);
+__webpack_require__(6);
 
-var _express = __webpack_require__(6);
+var _express = __webpack_require__(7);
 
 var _express2 = _interopRequireDefault(_express);
 
-var _renderer = __webpack_require__(7);
+var _renderer = __webpack_require__(8);
 
 var _renderer2 = _interopRequireDefault(_renderer);
 
 var _redux = __webpack_require__(4);
 
-var _combineReducer = __webpack_require__(13);
+var _combineReducer = __webpack_require__(14);
 
 var _combineReducer2 = _interopRequireDefault(_combineReducer);
 
-var _reduxThunk = __webpack_require__(15);
+var _reduxThunk = __webpack_require__(16);
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -190,10 +190,16 @@ app.listen(3000, function () {
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+module.exports = require("babel-polyfill");
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,11 +215,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _server = __webpack_require__(8);
+var _server = __webpack_require__(9);
 
 var _reactRedux = __webpack_require__(2);
 
-var _Route = __webpack_require__(9);
+var _Route = __webpack_require__(10);
 
 var _Route2 = _interopRequireDefault(_Route);
 
@@ -234,13 +240,13 @@ var renderer = function renderer(req, store) {
 exports.default = renderer;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-dom/server");
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -252,11 +258,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRouterDom = __webpack_require__(1);
 
-var _Home = __webpack_require__(10);
+var _Home = __webpack_require__(11);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _User = __webpack_require__(11);
+var _User = __webpack_require__(12);
 
 var _User2 = _interopRequireDefault(_User);
 
@@ -277,7 +283,7 @@ var route = function route() {
 exports.default = route;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -315,7 +321,7 @@ var Home = function Home() {
 exports.default = Home;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -364,7 +370,7 @@ var userList = function (_Component) {
                 return _react2.default.createElement(
                     "li",
                     { key: index },
-                    "user.name"
+                    user.name
                 );
             });
         }
@@ -400,13 +406,13 @@ function mapStateToProps(state) {
 exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchUser: _index.fetchUser })(userList);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -416,7 +422,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _userReducer = __webpack_require__(14);
+var _userReducer = __webpack_require__(15);
 
 var _userReducer2 = _interopRequireDefault(_userReducer);
 
@@ -430,7 +436,7 @@ var reducer = (0, _redux.combineReducers)({
 exports.default = reducer;
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -457,16 +463,10 @@ var userReducer = function userReducer() {
 exports.default = userReducer;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = require("redux-thunk");
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-module.exports = require("babel-polyfill");
+module.exports = require("redux-thunk");
 
 /***/ })
 /******/ ]);
