@@ -261,7 +261,7 @@ app.use(_express2.default.static("public"));
 app.get("*", function (req, res) {
     var store = (0, _createStore2.default)();
     //console.log("this is store",store)
-    //    console.log("\n\n\n this  is match route",matchRoutes(Routes,req.path))
+    console.log("\n\n\n this  is match route", (0, _reactRouterConfig.matchRoutes)(_Route2.default, req.path));
     var promises = (0, _reactRouterConfig.matchRoutes)(_Route2.default, req.path).map(function (_ref) {
         var route = _ref.route;
 
