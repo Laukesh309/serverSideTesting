@@ -9,7 +9,7 @@ import thunk from "redux-thunk"
 import {Provider} from "react-redux"
 import reducer from "./reducer/combineReducer"
 import {renderRoutes} from "react-router-config"
-const store = createStore(reducer,{},applyMiddleware(thunk))
+const store = createStore(reducer,window.INITIAL_STATE,applyMiddleware(thunk))
 ReactDom.hydrate(<Provider store={store}>
                  <BrowserRouter>
                       <div>{renderRoutes(Route)}</div>

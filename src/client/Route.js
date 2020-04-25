@@ -1,7 +1,8 @@
 import {Route} from "react-router-dom"
-import Home from "./component/Home"
-import User,{loadData} from "./component/User"
+import Home from "./pages/Home"
+import User from "./pages/User"
 import React from 'react'
+import userReducer from "./reducer/userReducer"
 
 // const route =()=>{
 //     return(
@@ -16,12 +17,12 @@ import React from 'react'
 export default [
     {
         path:"/",
-        component:Home,
+        ...Home,
         exact:true
     },
     {
-        loadData,  
+       ...User,     
         path:"/users",
-        component:User,
+        
     }
 ]

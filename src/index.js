@@ -17,7 +17,7 @@ app.get("*",(req,res)=>{
            return route.loadData ? route.loadData(store) : null;
         })
         Promise.all(promises).then((data)=>{
-            console.log("this is promise data",data)
+            // console.log("this is promise data",store.getState())
             res.send(renderer(req,store));
         });
     
