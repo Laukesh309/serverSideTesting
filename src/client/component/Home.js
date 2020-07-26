@@ -1,10 +1,17 @@
-import React from 'react'
+
+import React, { Component } from 'react'
 
 const Home =()=>{
     return(
-        <h1>
-            This is ServerSideRendering
+        <div>
+            <h1>
+            I ' m the VERY VERY BEST home componet 
         </h1>
+        <button onClick={()=>console.log("this is button like command")}>
+            ClickHere
+            </button>
+        </div>
+        
     )
 }
 
