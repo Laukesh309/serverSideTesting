@@ -626,7 +626,7 @@ var contentDisposition = __webpack_require__(39);
 var contentType = __webpack_require__(76);
 var deprecate = __webpack_require__(2)('express');
 var flatten = __webpack_require__(11);
-var mime = __webpack_require__(24).mime;
+var mime = __webpack_require__(25).mime;
 var etag = __webpack_require__(42);
 var proxyaddr = __webpack_require__(46);
 var qs = __webpack_require__(36);
@@ -1467,6 +1467,20 @@ module.exports = require("stream");
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(109);
+} else {
+  module.exports = __webpack_require__(110);
+}
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1486,7 +1500,7 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = emptyObject;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1545,7 +1559,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1587,19 +1601,19 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = require("events");
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = require("tty");
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1802,7 +1816,7 @@ function patchAssignSocket(res, callback) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1919,7 +1933,7 @@ function status (code) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1995,7 +2009,7 @@ function getBasicNodeMethods() {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = Object.setPrototypeOf || ({__proto__:[]} instanceof Array ? setProtoOf : mixinProperties);
@@ -2016,7 +2030,7 @@ function mixinProperties(obj, proto) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2041,15 +2055,15 @@ var destroy = __webpack_require__(86)
 var encodeUrl = __webpack_require__(9)
 var escapeHtml = __webpack_require__(10)
 var etag = __webpack_require__(42)
-var EventEmitter = __webpack_require__(18).EventEmitter
+var EventEmitter = __webpack_require__(19).EventEmitter
 var fresh = __webpack_require__(44)
 var fs = __webpack_require__(1)
 var mime = __webpack_require__(87)
 var ms = __webpack_require__(41)
-var onFinished = __webpack_require__(20)
+var onFinished = __webpack_require__(21)
 var parseRange = __webpack_require__(45)
 var path = __webpack_require__(0)
-var statuses = __webpack_require__(21)
+var statuses = __webpack_require__(22)
 var Stream = __webpack_require__(14)
 var util = __webpack_require__(4)
 
@@ -3097,20 +3111,6 @@ function setHeaders (res, headers) {
 
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(110);
-} else {
-  module.exports = __webpack_require__(111);
-}
-
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3474,13 +3474,13 @@ module.exports = require("url");
 
 var Route = __webpack_require__(31);
 var Layer = __webpack_require__(33);
-var methods = __webpack_require__(22);
+var methods = __webpack_require__(23);
 var mixin = __webpack_require__(13);
 var debug = __webpack_require__(6)('express:router');
 var deprecate = __webpack_require__(2)('express');
 var flatten = __webpack_require__(11);
 var parseUrl = __webpack_require__(5);
-var setPrototypeOf = __webpack_require__(23)
+var setPrototypeOf = __webpack_require__(24)
 
 /**
  * Module variables.
@@ -4144,7 +4144,7 @@ function wrap(old, fn) {
 var debug = __webpack_require__(6)('express:router:route');
 var flatten = __webpack_require__(11);
 var Layer = __webpack_require__(33);
-var methods = __webpack_require__(22);
+var methods = __webpack_require__(23);
 
 /**
  * Module variables.
@@ -4758,7 +4758,7 @@ function decode_param(val) {
  * @private
  */
 
-var EventEmitter = __webpack_require__(18).EventEmitter
+var EventEmitter = __webpack_require__(19).EventEmitter
 
 /**
  * Module exports.
@@ -6885,7 +6885,7 @@ function populateMaps (extensions, types) {
 
 
 
-var emptyFunction = __webpack_require__(17);
+var emptyFunction = __webpack_require__(18);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -7035,14 +7035,18 @@ if (process.env.NODE_ENV === 'production') {
 
 
 var express = __webpack_require__(53);
-var Home = __webpack_require__(109).default;
+var React = __webpack_require__(15);
+var Home = __webpack_require__(111).default;
 var renderToString = __webpack_require__(112).renderToString;
 var app = express();
 
+app.use(express.static('public'));
 app.get("/", function (req, res) {
 
     var content = renderToString(React.createElement(Home, null));
-    res.send(content);
+
+    var html = '<html>\n      <head>\n\n      </head>\n      <body>\n           <div id="root">' + content + '</div>\n           <script src ="bundle.js"></script>\n      </body>\n    </html>';
+    res.send(html);
 });
 
 app.listen(3000, function () {
@@ -7086,7 +7090,7 @@ module.exports = __webpack_require__(54);
  * Module dependencies.
  */
 
-var EventEmitter = __webpack_require__(18).EventEmitter;
+var EventEmitter = __webpack_require__(19).EventEmitter;
 var mixin = __webpack_require__(55);
 var proto = __webpack_require__(56);
 var Route = __webpack_require__(31);
@@ -7274,7 +7278,7 @@ function merge(dest, src, redefine) {
 
 var finalhandler = __webpack_require__(57);
 var Router = __webpack_require__(30);
-var methods = __webpack_require__(22);
+var methods = __webpack_require__(23);
 var middleware = __webpack_require__(71);
 var query = __webpack_require__(35);
 var debug = __webpack_require__(6)('express:application');
@@ -7287,7 +7291,7 @@ var deprecate = __webpack_require__(2)('express');
 var flatten = __webpack_require__(11);
 var merge = __webpack_require__(13);
 var resolve = __webpack_require__(0).resolve;
-var setPrototypeOf = __webpack_require__(23)
+var setPrototypeOf = __webpack_require__(24)
 var slice = Array.prototype.slice;
 
 /**
@@ -7924,9 +7928,9 @@ function tryRender(view, options, callback) {
 var debug = __webpack_require__(58)('finalhandler')
 var encodeUrl = __webpack_require__(9)
 var escapeHtml = __webpack_require__(10)
-var onFinished = __webpack_require__(20)
+var onFinished = __webpack_require__(21)
 var parseUrl = __webpack_require__(5)
-var statuses = __webpack_require__(21)
+var statuses = __webpack_require__(22)
 var unpipe = __webpack_require__(64)
 
 /**
@@ -8583,7 +8587,7 @@ function plural(ms, n, name) {
  * Module dependencies.
  */
 
-var tty = __webpack_require__(19);
+var tty = __webpack_require__(20);
 var util = __webpack_require__(4);
 
 /**
@@ -9370,7 +9374,7 @@ function plural(ms, n, name) {
  * Module dependencies.
  */
 
-var tty = __webpack_require__(19);
+var tty = __webpack_require__(20);
 var util = __webpack_require__(4);
 
 /**
@@ -9908,7 +9912,7 @@ function eventListenerCount (emitter, type) {
  * @private
  */
 
-var setPrototypeOf = __webpack_require__(23)
+var setPrototypeOf = __webpack_require__(24)
 
 /**
  * Initialization middleware, exposing the
@@ -11427,7 +11431,7 @@ function localstorage() {
  * Module dependencies.
  */
 
-var tty = __webpack_require__(19);
+var tty = __webpack_require__(20);
 var util = __webpack_require__(4);
 
 /**
@@ -14934,16 +14938,16 @@ var encodeUrl = __webpack_require__(9);
 var escapeHtml = __webpack_require__(10);
 var http = __webpack_require__(12);
 var isAbsolute = __webpack_require__(3).isAbsolute;
-var onFinished = __webpack_require__(20);
+var onFinished = __webpack_require__(21);
 var path = __webpack_require__(0);
-var statuses = __webpack_require__(21)
+var statuses = __webpack_require__(22)
 var merge = __webpack_require__(13);
 var sign = __webpack_require__(105).sign;
 var normalizeType = __webpack_require__(3).normalizeType;
 var normalizeTypes = __webpack_require__(3).normalizeTypes;
 var setCharset = __webpack_require__(3).setCharset;
 var cookie = __webpack_require__(106);
-var send = __webpack_require__(24);
+var send = __webpack_require__(25);
 var extname = path.extname;
 var mime = send.mime;
 var resolve = path.resolve;
@@ -16431,7 +16435,7 @@ var encodeUrl = __webpack_require__(9)
 var escapeHtml = __webpack_require__(10)
 var parseUrl = __webpack_require__(5)
 var resolve = __webpack_require__(0).resolve
-var send = __webpack_require__(24)
+var send = __webpack_require__(25)
 var url = __webpack_require__(29)
 
 /**
@@ -16628,33 +16632,6 @@ function createRedirectDirectoryListener () {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(25);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Home = function Home() {
-    return _react2.default.createElement(
-        'h1',
-        null,
-        'This is ServerSideRendering'
-    );
-};
-
-exports.default = Home;
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /*
  React v16.0.0
  react.production.min.js
@@ -16664,7 +16641,7 @@ exports.default = Home;
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(7),p=__webpack_require__(15);__webpack_require__(16);var r=__webpack_require__(17);
+var f=__webpack_require__(7),p=__webpack_require__(16);__webpack_require__(17);var r=__webpack_require__(18);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -16681,7 +16658,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16703,9 +16680,9 @@ if (process.env.NODE_ENV !== "production") {
 
 var objectAssign$1 = __webpack_require__(7);
 var require$$0 = __webpack_require__(48);
-var emptyObject = __webpack_require__(15);
-var invariant = __webpack_require__(16);
-var emptyFunction = __webpack_require__(17);
+var emptyObject = __webpack_require__(16);
+var invariant = __webpack_require__(17);
+var emptyFunction = __webpack_require__(18);
 var checkPropTypes = __webpack_require__(26);
 
 /**
@@ -18386,6 +18363,44 @@ module.exports = ReactEntry;
 
 
 /***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(15);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Home = function Home() {
+    return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+            "h1",
+            null,
+            "I ' m the VERY VERY BEST home componet"
+        ),
+        _react2.default.createElement(
+            "button",
+            { onClick: function onClick() {
+                    return console.log("this is button like command");
+                } },
+            "ClickHere"
+        )
+    );
+};
+
+exports.default = Home;
+
+/***/ }),
 /* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18413,7 +18428,7 @@ if (process.env.NODE_ENV === 'production') {
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var k=__webpack_require__(7);__webpack_require__(16);var m=__webpack_require__(25),p=__webpack_require__(15),aa=__webpack_require__(49),ba=__webpack_require__(50),ca=__webpack_require__(14);
+var k=__webpack_require__(7);__webpack_require__(17);var m=__webpack_require__(15),p=__webpack_require__(16),aa=__webpack_require__(49),ba=__webpack_require__(50),ca=__webpack_require__(14);
 function w(a){for(var b=arguments.length-1,g="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,c=0;c<b;c++)g+="\x26args[]\x3d"+encodeURIComponent(arguments[c+1]);b=Error(g+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 function x(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var y={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:x,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?x(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},da={children:!0,dangerouslySetInnerHTML:!0,autoFocus:!0,defaultValue:!0,defaultChecked:!0,innerHTML:!0,suppressContentEditableWarning:!0,style:!0};
@@ -18509,12 +18524,12 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var objectAssign$1 = __webpack_require__(7);
-var invariant = __webpack_require__(16);
+var invariant = __webpack_require__(17);
 var require$$0 = __webpack_require__(48);
-var react = __webpack_require__(25);
-var emptyFunction = __webpack_require__(17);
+var react = __webpack_require__(15);
+var emptyFunction = __webpack_require__(18);
 var propTypes = __webpack_require__(116);
-var emptyObject = __webpack_require__(15);
+var emptyObject = __webpack_require__(16);
 var hyphenateStyleName = __webpack_require__(49);
 var memoizeStringOnly = __webpack_require__(50);
 var checkPropTypes = __webpack_require__(26);
